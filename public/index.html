@@ -2,11 +2,30 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/bundle.js"></script>
   </head>
   <body>
     <div id="app">
 
+      <h1>ToDo's</h1>
+
+      <form @submit.prevent="saveNewItem">
+        <input type="text" id="new-item" v-model="newItem">
+        <input type="radio" id="high"  value="high" v-model="priority">
+        <label for="high">High</label>
+        <input type="radio" id="low" value="low" v-model="priority">
+        <label for="low">Low</label>
+        <input class='button' type="submit" value="Save Item">
+      </form>
+
+
+      <ul>
+        <li v-for="(item, index) in todos" :class="item.priority === 'high' ? 'high':'low'">
+          {{item.name}}
+        </li>
+      </ul>
     </div>
   </body>
 </html>
